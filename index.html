@@ -221,7 +221,7 @@
   }
   .hero-slide.ativo{opacity:1; pointer-events:auto;}
   .hero-slide-imagem{padding:0 !important;}
-  .hero-slide-img{width:100%; height:100%; object-fit:cover; display:block;}
+  .hero-slide-img{width:100%; height:100%; object-fit:contain; display:block;}
   .hero-inner{
     max-width:800px; margin:0 auto;
     text-align:center;
@@ -516,6 +516,133 @@
   }
   .btn-whatsapp-produto:hover{background:#1EBE5A;}
 
+  /* ===== SERVIÇOS ===== */
+  .secao-servicos{background:var(--preto); color:var(--branco);}
+  .servicos-cabecalho{text-align:center; max-width:720px; margin:0 auto 44px;}
+  .servicos-label{
+    color:var(--amarelo); font-weight:700; font-size:0.8rem; letter-spacing:0.12em;
+    text-transform:uppercase; margin-bottom:10px;
+  }
+  .servicos-titulo{
+    font-family:var(--fonte-display); font-size:2.2rem; line-height:1.15;
+    text-transform:uppercase; letter-spacing:0.01em;
+  }
+  .servicos-titulo span{display:block; color:var(--amarelo);}
+  .servicos-sub{color:#B7B5AC; font-size:1rem; margin-top:14px;}
+  .grade-servicos{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:24px;
+  }
+  .card-servico{
+    background:#1A1917; border:1px solid #2C2B27; border-radius:10px;
+    padding:32px 28px;
+  }
+  .card-servico-icone{
+    width:56px; height:56px; border-radius:10px;
+    background:rgba(255,203,0,0.12);
+    display:flex; align-items:center; justify-content:center;
+    margin-bottom:20px;
+  }
+  .card-servico-icone svg{width:26px; height:26px; stroke:var(--amarelo);}
+  .card-servico h3{
+    font-family:var(--fonte-display); font-size:1.15rem; text-transform:uppercase;
+    letter-spacing:0.01em; margin-bottom:10px;
+  }
+  .card-servico p{color:#B7B5AC; font-size:0.9rem; line-height:1.55; margin-bottom:20px;}
+  .card-servico a{
+    display:inline-flex; align-items:center; gap:6px;
+    color:var(--amarelo); font-weight:700; font-size:0.9rem; text-transform:uppercase;
+  }
+  .card-servico a svg{width:16px; height:16px; stroke:var(--amarelo); transition:transform .15s;}
+  .card-servico a:hover svg{transform:translateX(4px);}
+  @media(max-width:760px){
+    .grade-servicos{grid-template-columns:1fr;}
+    .servicos-titulo{font-size:1.6rem;}
+  }
+
+  /* ===== SOBRE NÓS ===== */
+  .secao-sobre{background:var(--preto); color:var(--branco);}
+  .sobre-label{color:var(--amarelo); font-weight:700; font-size:0.8rem; letter-spacing:0.12em; text-transform:uppercase; margin-bottom:10px;}
+  .sobre-titulo{font-family:var(--fonte-display); font-size:2.2rem; line-height:1.15; text-transform:uppercase; letter-spacing:0.01em; max-width:760px;}
+  .sobre-titulo span{color:var(--amarelo);}
+  .sobre-texto{color:#B7B5AC; font-size:1rem; margin-top:16px; max-width:700px; line-height:1.6;}
+  .grade-sobre-cards{display:grid; grid-template-columns:repeat(3,1fr); gap:20px; margin-top:36px;}
+  .card-sobre{
+    background:#1A1917; border:1px solid #2C2B27; border-radius:10px;
+    padding:28px 20px; text-align:center;
+  }
+  .card-sobre svg{width:30px; height:30px; stroke:var(--amarelo); margin-bottom:10px;}
+  .card-sobre p{font-weight:700; text-transform:uppercase; font-size:0.9rem; letter-spacing:0.02em;}
+  .sobre-rodape{display:flex; flex-wrap:wrap; gap:14px; margin-top:24px; align-items:center;}
+  .sobre-badge{
+    display:inline-flex; align-items:center; gap:8px;
+    background:#1A1917; border:1px solid #2C2B27; border-radius:8px;
+    padding:10px 16px; font-size:0.85rem; color:#D8D6CC;
+  }
+  .sobre-badge svg{width:16px; height:16px; stroke:var(--amarelo);}
+  .sobre-badge-anos{background:var(--amarelo); color:var(--preto); font-weight:800; border:none;}
+  @media(max-width:760px){ .grade-sobre-cards{grid-template-columns:1fr;} .sobre-titulo{font-size:1.6rem;} }
+
+  /* ===== LOCALIZAÇÃO ===== */
+  .secao-localizacao{background:var(--preto); color:var(--branco);}
+  .localizacao-cabecalho{text-align:center; margin-bottom:36px;}
+  .localizacao-label{color:var(--amarelo); font-weight:700; font-size:0.8rem; letter-spacing:0.12em; text-transform:uppercase; margin-bottom:10px;}
+  .localizacao-titulo{font-family:var(--fonte-display); font-size:2rem; text-transform:uppercase;}
+  .localizacao-titulo span{color:var(--amarelo);}
+  .grade-localizacao{display:grid; grid-template-columns:1.6fr 1fr; gap:24px; align-items:stretch;}
+  .mapa-embed{border-radius:10px; overflow:hidden; border:1px solid #2C2B27; min-height:340px;}
+  .mapa-embed iframe{width:100%; height:100%; min-height:340px; border:0; display:block;}
+  .painel-localizacao{
+    background:#1A1917; border:1px solid #2C2B27; border-radius:10px;
+    padding:26px; display:flex; flex-direction:column; gap:16px;
+  }
+  .loc-verificado{
+    align-self:flex-start; background:rgba(255,203,0,0.12); color:var(--amarelo);
+    font-size:0.75rem; font-weight:700; letter-spacing:0.03em; text-transform:uppercase;
+    padding:6px 12px; border-radius:20px; display:flex; align-items:center; gap:6px;
+  }
+  .loc-item-titulo{color:#8C8A80; font-size:0.72rem; text-transform:uppercase; letter-spacing:0.06em; margin-bottom:4px;}
+  .loc-item-valor{font-size:0.95rem; line-height:1.4;}
+  .loc-botoes{display:flex; flex-direction:column; gap:10px; margin-top:6px;}
+  .btn-loc-primario{
+    background:var(--amarelo); color:var(--preto); font-weight:800; text-align:center;
+    padding:13px; border-radius:6px; text-transform:uppercase; font-size:0.85rem;
+  }
+  .btn-loc-secundario{
+    background:transparent; border:1px solid #3D3D3A; color:var(--branco); text-align:center;
+    padding:13px; border-radius:6px; text-transform:uppercase; font-size:0.85rem;
+  }
+
+  /* ===== MARCAS QUE TRABALHAMOS ===== */
+  .secao-marcas{background:var(--preto); border-top:1px solid #2C2B27; border-bottom:1px solid #2C2B27; padding:34px 0;}
+  .marcas-label{text-align:center; color:var(--amarelo); font-weight:700; font-size:0.78rem; letter-spacing:0.14em; text-transform:uppercase; margin-bottom:22px;}
+  .marcas-faixa{display:flex; flex-wrap:wrap; justify-content:center; align-items:center; gap:36px;}
+  .marcas-faixa img{height:34px; filter:grayscale(100%) brightness(1.6); opacity:0.85;}
+
+  /* ===== NEWSLETTER MODAL ===== */
+  .overlay-newsletter{
+    position:fixed; inset:0; background:rgba(0,0,0,0.65); z-index:900;
+    display:none; align-items:center; justify-content:center; padding:20px;
+  }
+  .overlay-newsletter.visivel{display:flex;}
+  .modal-newsletter{
+    background:var(--branco); border-radius:10px; max-width:420px; width:100%;
+    padding:32px; position:relative; text-align:left;
+  }
+  .modal-newsletter .fechar-newsletter{
+    position:absolute; top:14px; right:14px; background:none; border:none;
+    font-size:1.2rem; cursor:pointer; color:var(--chumbo-claro);
+  }
+  .modal-newsletter h3{font-family:var(--fonte-display); font-size:1.3rem; color:var(--preto); text-transform:uppercase; margin-bottom:8px;}
+  .modal-newsletter p{color:var(--chumbo-claro); font-size:0.9rem; margin-bottom:18px;}
+  .modal-newsletter input{
+    width:100%; padding:12px 14px; border:1px solid #D8D6CC; border-radius:6px;
+    font-size:0.95rem; margin-bottom:12px;
+  }
+  .modal-newsletter button{
+    width:100%; background:var(--amarelo); color:var(--preto); font-weight:800;
+    padding:13px; border-radius:6px; border:none; cursor:pointer; text-transform:uppercase; font-size:0.9rem;
+  }
+
   /* ============ FAQ / RODAPÉ INFO ============ */
   .secao-institucional{background:var(--branco); border-top:1px solid #E2E0D5; border-bottom:1px solid #E2E0D5;}
   .grade-institucional{
@@ -783,8 +910,8 @@
   .toast.visivel{opacity:1; transform:translateX(-50%) translateY(0);}
 
   .logo-oficial-header{
-    height:190px; width:190px;
-    border-radius:14px;
+    height:56px; width:56px;
+    border-radius:10px;
     object-fit:cover;
     flex-shrink:0;
   }
@@ -816,9 +943,9 @@
       </form>
     </div>
     <div class="header-acoes">
-      <a href="#contato" class="header-acoes-item">
+      <a href="#sobre" class="header-acoes-item">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="white" stroke-width="2"/><path d="M9.5 9a2.5 2.5 0 015 0c0 1.5-2 1.8-2 3.3" stroke="white" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="16.5" r="0.9" fill="white"/></svg>
-        <span>Ajuda</span>
+        <span>Sobre nós</span>
       </a>
       <a href="#" class="header-acoes-item" onclick="abrirAreaCliente(event)">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="3.5" stroke="white" stroke-width="2"/><path d="M4.5 20c1.2-4 4-6 7.5-6s6.3 2 7.5 6" stroke="white" stroke-width="2" stroke-linecap="round"/></svg>
@@ -933,68 +1060,126 @@
   </div>
 </section>
 
-<section class="secao-institucional" id="institucional">
-  <div class="secao" style="padding-top:56px; padding-bottom:56px;">
-    <div class="grade-institucional">
-      <div class="item-institucional">
-        <h3>01 — Você identifica a máquina</h3>
-        <p>Use o localizador ou fale com nosso técnico. Marca, modelo e posição do vidro já garantem a peça certa de primeira.</p>
+<section class="secao-servicos" id="servicos">
+  <div class="secao" style="padding-top:64px; padding-bottom:64px;">
+    <div class="servicos-cabecalho">
+      <div class="servicos-label">Serviços</div>
+      <h2 class="servicos-titulo">Soluções em vidros e para-brisas<span>Para máquinas pesadas</span></h2>
+      <p class="servicos-sub">Soluções completas para vidros das principais marcas do mercado.</p>
+    </div>
+    <div class="grade-servicos">
+      <div class="card-servico">
+        <div class="card-servico-icone">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+        </div>
+        <h3>Instalação de vidros para máquinas</h3>
+        <p>Substituição e instalação de vidros para escavadeiras, retroescavadeiras, pás carregadeiras e motoniveladoras com vedação perfeita e padrão técnico industrial.</p>
+        <a href="https://wa.me/5585999485178?text=Ol%C3%A1!%20Quero%20solicitar%20um%20or%C3%A7amento%20para%20instala%C3%A7%C3%A3o%20de%20vidros%20para%20m%C3%A1quinas." target="_blank" rel="noopener">Solicitar orçamento <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
       </div>
-      <div class="item-institucional">
-        <h3>02 — Confirmamos disponibilidade</h3>
-        <p>Checamos estoque em Fortaleza e prazo de entrega para sua região no Nordeste — sem enrolação.</p>
+      <div class="card-servico">
+        <div class="card-servico-icone">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="18" r="3"/><circle cx="6" cy="15" r="4"/><path d="M6 11V4h4"/><path d="M10 4h4l2 5h-3"/><path d="M13 9v2"/><path d="M9.5 15.5 12 13h4"/></svg>
+        </div>
+        <h3>Para-brisas para tratores</h3>
+        <p>Para-brisas e vidros laterais para tratores agrícolas de todas as marcas e modelos, com encaixe técnico preciso e máxima segurança.</p>
+        <a href="https://wa.me/5585999485178?text=Ol%C3%A1!%20Quero%20solicitar%20um%20or%C3%A7amento%20de%20para-brisa%20para%20trator." target="_blank" rel="noopener">Solicitar orçamento <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
       </div>
-      <div class="item-institucional">
-        <h3>03 — Máquina de volta ao trabalho</h3>
-        <p>Entrega ou instalação orientada, com o conhecimento técnico de quem entende de máquina pesada.</p>
+      <div class="card-servico">
+        <div class="card-servico-icone">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <h3>Cabinamento (vidros)</h3>
+        <p>Vidros laterais, traseiros e estruturais para cabines de máquinas pesadas, com acabamento profissional e durabilidade comprovada.</p>
+        <a href="https://wa.me/5585999485178?text=Ol%C3%A1!%20Quero%20solicitar%20um%20or%C3%A7amento%20de%20cabinamento%20(vidros)%20para%20m%C3%A1quina." target="_blank" rel="noopener">Solicitar orçamento <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
       </div>
     </div>
   </div>
 </section>
 
-<section class="secao-blog" id="blog">
-  <div class="secao" style="padding-top:56px; padding-bottom:56px;">
-    <div class="secao-cabecalho-blog">
-      <h2>Blog</h2>
-      <p>Dicas técnicas, novidades e conteúdo sobre parabrisas e vidros para máquinas pesadas.</p>
+<section class="secao-sobre" id="sobre">
+  <div class="secao" style="padding-top:64px; padding-bottom:64px;">
+    <div class="sobre-label">Sobre a Vidromáquinas</div>
+    <h2 class="sobre-titulo">Excelência em vidros <span>para quem não pode parar.</span></h2>
+    <p class="sobre-texto">Há 8 anos, a Vidromáquinas é referência em reposição de vidros e para-brisas para máquinas e tratores no Nordeste, garantindo qualidade, segurança e envio para todo o Brasil.</p>
+    <div class="grade-sobre-cards">
+      <div class="card-sobre">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2h12"/><path d="M6 22h12"/><path d="M6 2c0 6 6 6 6 10s-6 4-6 10"/><path d="M18 2c0 6-6 6-6 10s6 4 6 10"/></svg>
+        <p>Durabilidade</p>
+      </div>
+      <div class="card-sobre">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+        <p>Segurança</p>
+      </div>
+      <div class="card-sobre">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 16c-2 0-3-1.3-3-3s1-2.8 2.7-3C7 8 8.5 6 11 6c2 0 3.5 1.3 3.8 3 1.9.2 3.2 1.6 3.2 3.4 0 1.9-1.6 3.6-3.5 3.6H7z"/><path d="M12 16v4"/><path d="M9 20h6"/></svg>
+        <p>Vedação perfeita</p>
+      </div>
     </div>
-    <div class="grade-blog" id="grade-blog"></div>
+    <div class="sobre-rodape">
+      <span class="sobre-badge"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m9 12 2 2 4-4"/></svg>CNPJ 58.694.466/0001-14</span>
+      <span class="sobre-badge sobre-badge-anos">8 Anos de mercado</span>
+    </div>
   </div>
 </section>
 
-<div class="overlay-privacidade" id="overlay-post" onclick="fecharPost()"></div>
-<div class="modal-privacidade modal-post" id="modal-post">
-  <div class="modal-privacidade-cabecalho">
-    <h2 id="post-titulo-modal">Título do post</h2>
-    <button class="fechar-drawer" onclick="fecharPost()">✕</button>
+<section class="secao-localizacao">
+  <div class="secao" style="padding-top:56px; padding-bottom:56px;">
+    <div class="localizacao-cabecalho">
+      <div class="localizacao-label">Localização</div>
+      <h2 class="localizacao-titulo">Venha nos <span>visitar</span></h2>
+    </div>
+    <div class="grade-localizacao">
+      <div class="mapa-embed">
+        <iframe src="https://www.google.com/maps?q=R.+Adolfo+Quixad%C3%A1,+94+-+Aerol%C3%A2ndia,+Fortaleza+-+CE,+60850-140&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+      <div class="painel-localizacao">
+        <span class="loc-verificado"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m9 12 2 2 4-4"/></svg>Local verificado</span>
+        <div>
+          <div class="loc-item-titulo">Endereço</div>
+          <div class="loc-item-valor">R. Adolfo Quixadá, 94 - Aerolândia, Fortaleza - CE, 60850-140</div>
+        </div>
+        <div>
+          <div class="loc-item-titulo">Telefone</div>
+          <div class="loc-item-valor">(85) 99948-5178</div>
+        </div>
+        <div>
+          <div class="loc-item-titulo">Atendimento</div>
+          <div class="loc-item-valor">Seg a Sex · 08h às 18h<br>Sábado · 08h às 12h</div>
+        </div>
+        <div class="loc-botoes">
+          <a class="btn-loc-primario" href="https://www.google.com/maps/dir/?api=1&destination=R.+Adolfo+Quixad%C3%A1,+94+-+Aerol%C3%A2ndia,+Fortaleza+-+CE,+60850-140" target="_blank" rel="noopener">Como chegar</a>
+          <a class="btn-loc-secundario" href="tel:+5585999485178">Ligar agora</a>
+        </div>
+      </div>
+    </div>
   </div>
-  <div class="modal-privacidade-corpo" id="post-corpo-modal"></div>
+</section>
+
+<section class="secao-marcas">
+  <div class="secao">
+    <div class="marcas-label">Marcas que trabalhamos</div>
+    <div class="marcas-faixa">
+      <img src="https://logo.clearbit.com/dynapac.com" alt="Dynapac" onerror="this.style.display='none'">
+      <img src="https://logo.clearbit.com/caterpillar.com" alt="CAT" onerror="this.style.display='none'">
+      <img src="https://logo.clearbit.com/casece.com" alt="Case Construction" onerror="this.style.display='none'">
+      <img src="https://logo.clearbit.com/newholland.com" alt="New Holland" onerror="this.style.display='none'">
+      <img src="https://logo.clearbit.com/jcb.com" alt="JCB" onerror="this.style.display='none'">
+      <img src="https://logo.clearbit.com/volvogroup.com" alt="Volvo" onerror="this.style.display='none'">
+    </div>
+  </div>
+</section>
+
+<div class="overlay-newsletter" id="overlay-newsletter">
+  <div class="modal-newsletter">
+    <button class="fechar-newsletter" onclick="fecharNewsletter()">✕</button>
+    <h3>Cadastre seu e-mail</h3>
+    <p>Receba novidades, lançamentos e ofertas exclusivas da Vidromáquinas direto no seu e-mail.</p>
+    <form onsubmit="return salvarNewsletter(event)">
+      <input type="email" id="campo-email-newsletter" placeholder="Digite seu e-mail" required>
+      <button type="submit">Cadastrar</button>
+    </form>
+  </div>
 </div>
-
-<section class="secao-pagamento-envio">
-  <div class="secao" style="padding-top:56px; padding-bottom:56px;">
-    <div class="grade-pagamento-envio">
-      <div class="bloco-pg">
-        <h3>Formas de Pagamento</h3>
-        <ul class="lista-pg">
-          <li><strong>Pix</strong> — pagamento à vista, com desconto aplicado automaticamente no carrinho.</li>
-          <li><strong>Cartão de crédito</strong> — em até 10x sem juros, direto no checkout.</li>
-          <li><strong>Boleto bancário</strong> — compensação em até 2 dias úteis.</li>
-          <li><strong>Negociação direta</strong> — combine forma de pagamento pelo WhatsApp com nosso time técnico.</li>
-        </ul>
-      </div>
-      <div class="bloco-pg">
-        <h3>Envio e Frete</h3>
-        <ul class="lista-pg">
-          <li><strong>Fortaleza-CE:</strong> retirada na loja ou entrega no mesmo dia, sob consulta.</li>
-          <li><strong>Nordeste:</strong> frete a negociar — fale com nosso time pelo WhatsApp para combinar valor e prazo de entrega.</li>
-          <li><strong>Urgência:</strong> para máquina parada, fale com o técnico pelo WhatsApp — priorizamos envios expressos quando possível.</li>
-          <li><strong>Rastreio:</strong> código de rastreamento enviado por e-mail assim que o pedido despachar.</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
 
 <footer id="contato">
   <div class="footer-inner">
@@ -1009,7 +1194,7 @@
         <a href="#">vidromaquinas.com.br</a>
         <a href="#">@vidromaquinass</a>
         <a href="#catalogo">Catálogo</a>
-        <a href="#blog">Blog</a>
+        <a href="#sobre">Sobre nós</a>
         <a href="#" onclick="abrirPrivacidade(event)">Política de Privacidade</a>
       </div>
       <div class="footer-col">
@@ -1534,7 +1719,7 @@ function renderProdutos(){
         <div class="cartao-compat">Compatível: ${p.compat}</div>
         ${blocoPrecos}
         <div class="cartao-rodape">
-          <button class="btn-add" id="btn-add-${p.id}" onclick="adicionarCarrinho(${p.id})">Adicionar</button>
+          <button class="btn-add" id="btn-add-${p.id}" onclick="adicionarCarrinho(${p.id})">Comprar</button>
           <a class="btn-whatsapp-produto" href="${linkWhatsappProduto(p)}" target="_blank" rel="noopener">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 00-8.5 15.2L2 22l4.9-1.5A10 10 0 1012 2zm0 18.1a8.1 8.1 0 01-4.1-1.1l-.3-.2-3 .9.9-2.9-.2-.3A8.1 8.1 0 1112 20.1zm4.5-6.1c-.2-.1-1.4-.7-1.6-.8-.2-.1-.4-.1-.6.1-.2.2-.6.8-.8 1-.1.2-.3.2-.5.1-.2-.1-1-.4-1.9-1.2-.7-.6-1.2-1.4-1.3-1.6-.1-.2 0-.4.1-.5.1-.1.2-.3.4-.4.1-.1.2-.3.2-.4.1-.2 0-.3 0-.5-.1-.1-.6-1.4-.8-2-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.2-.9.9-.9 2.2s1 2.5 1.1 2.7c.1.2 2 3 4.7 4.2.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.6-.1 1.4-.6 1.6-1.1.2-.5.2-1 .1-1.1-.1-.1-.2-.2-.4-.3z"/></svg>
             Negociar
@@ -1604,7 +1789,7 @@ function adicionarCarrinho(id){
   const btn = document.getElementById(`btn-add-${id}`);
   btn.textContent = 'Adicionado ✓';
   btn.classList.add('adicionado');
-  setTimeout(() => { btn.textContent = 'Adicionar'; btn.classList.remove('adicionado'); }, 1200);
+  setTimeout(() => { btn.textContent = 'Comprar'; btn.classList.remove('adicionado'); }, 1200);
 }
 
 function alterarQtd(id, delta){
@@ -1788,51 +1973,7 @@ heroSecao.addEventListener('mouseleave', () => {
   heroAutoPlay = setInterval(() => moverHero(1), 6000);
 });
 
-// ============ BLOG ============
-// Quando você mandar o conteúdo (texto + fotos), eu adiciono os posts aqui nesta lista.
-const posts = [
-  // Exemplo de como fica um post (pode apagar quando os reais chegarem):
-  // {
-  //   titulo: "Como identificar o parabrisa certo para sua máquina",
-  //   data: "29 de julho de 2026",
-  //   resumo: "Marca, modelo e posição do vidro — os 3 dados que evitam pedir a peça errada.",
-  //   imagem: "", // link ou base64 da imagem de capa (opcional)
-  //   corpoHtml: "<p>Texto completo do post aqui, em parágrafos.</p>"
-  // },
-];
-
-function renderBlog(){
-  const container = document.getElementById('grade-blog');
-  if(posts.length === 0){
-    container.innerHTML = '<p style="grid-column:1/-1; text-align:center; color:var(--chumbo-claro); padding:20px 0;">Em breve, novidades por aqui.</p>';
-    return;
-  }
-  container.innerHTML = posts.map((p, i) => `
-    <div class="cartao-blog" onclick="abrirPost(${i})">
-      <div class="cartao-blog-imagem">${p.imagem ? `<img src="${p.imagem}" alt="${p.titulo}">` : iconeParabrisa()}</div>
-      <div class="cartao-blog-corpo">
-        <div class="cartao-blog-data">${p.data}</div>
-        <div class="cartao-blog-titulo">${p.titulo}</div>
-        <div class="cartao-blog-resumo">${p.resumo}</div>
-        <div class="cartao-blog-link">Ler mais →</div>
-      </div>
-    </div>`).join('');
-}
-function abrirPost(i){
-  const p = posts[i];
-  document.getElementById('post-titulo-modal').textContent = p.titulo;
-  document.getElementById('post-corpo-modal').innerHTML = `
-    ${p.imagem ? `<img class="post-corpo-imagem" src="${p.imagem}" alt="${p.titulo}">` : ''}
-    <div class="cartao-blog-data" style="margin-bottom:14px;">${p.data}</div>
-    <div class="post-corpo-texto">${p.corpoHtml}</div>`;
-  document.getElementById('modal-post').classList.add('aberto');
-  document.getElementById('overlay-post').classList.add('aberto');
-}
-function fecharPost(){
-  document.getElementById('modal-post').classList.remove('aberto');
-  document.getElementById('overlay-post').classList.remove('aberto');
-}
-renderBlog();
+// ============ BLOG (removido) ============
 
 // ============ MODAL POLÍTICA DE PRIVACIDADE ============
 function abrirPrivacidade(e){
@@ -1853,6 +1994,45 @@ renderFiltros();
 renderProdutos();
 renderCarrinho();
 iniciarCarrossel();
+
+// ============ NEWSLETTER (popup ao entrar no site) ============
+function fecharNewsletter(){
+  document.getElementById('overlay-newsletter').classList.remove('visivel');
+  sessionStorage.setItem('vidromaquinas_newsletter_fechado', '1');
+}
+
+async function salvarNewsletter(e){
+  e.preventDefault();
+  const email = document.getElementById('campo-email-newsletter').value.trim();
+  if(!email) return false;
+  try{
+    if(supabaseClient){
+      await supabaseClient.from('newsletter_assinantes').insert([{ email }]);
+    }
+  }catch(err){
+    console.error('Erro ao salvar e-mail da newsletter:', err);
+  }
+  localStorage.setItem('vidromaquinas_newsletter_email', email);
+  mostrarToast('E-mail cadastrado com sucesso!');
+  fecharNewsletter();
+  return false;
+}
+
+(function iniciarPopupNewsletter(){
+  const jaCadastrou = localStorage.getItem('vidromaquinas_newsletter_email');
+  const jaFechouNaSessao = sessionStorage.getItem('vidromaquinas_newsletter_fechado');
+  if(jaCadastrou || jaFechouNaSessao) return;
+  setTimeout(() => {
+    document.getElementById('overlay-newsletter').classList.add('visivel');
+  }, 2500);
+})();
+
+document.getElementById('overlay-newsletter').addEventListener('click', function(e){
+  if(e.target === this){
+    sessionStorage.setItem('vidromaquinas_newsletter_fechado', '1');
+    fecharNewsletter();
+  }
+});
 </script>
 </body>
 </html>

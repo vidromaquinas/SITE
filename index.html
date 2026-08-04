@@ -2017,5 +2017,15 @@ document.getElementById('overlay-newsletter').addEventListener('click', function
   }
 });
 </script>
+
+<!-- Google Ads: conversão "Contato via WhatsApp" -->
+<script>
+document.addEventListener('click', function(e){
+  var el = e.target.closest('#whatsapp-flutuante, .btn-whatsapp-produto');
+  if (el && typeof gtag === 'function') {
+    gtag('event', 'conversion', {'send_to': 'AW-18369368256/Tex0CNrY1NscEMChmbdE'});
+  }
+});
+</script>
 </body>
 </html>

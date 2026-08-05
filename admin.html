@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin · Vidromáquinas</title>
+<meta name="robots" content="noindex, nofollow">
+<style>
+  :root{
+    --amarelo:#FFCB00; --preto:#111110; --chumbo:#2A2A28; --chumbo-claro:#3D3D3A;
+    --branco:#FFFFFF; --creme:#F4F3EE; --verde-ok:#1EBE5A;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0; font-family:'Segoe UI',Arial,sans-serif; background:var(--creme); color:var(--preto);
+  }
+  header{
+    background:var(--preto); color:var(--branco); padding:18px 24px;
+    display:flex; align-items:center; justify-content:space-between;
+  }
+  header h1{font-size:1.2rem; margin:0;}
+  header .sair{color:var(--amarelo); cursor:pointer; font-size:0.85rem; text-decoration:underline; background:none; border:none;}
+
+  /* LOGIN */
+  #tela-login{
+    max-width:380px; margin:80px auto; background:var(--branco); border-radius:10px;
+    padding:32px; box-shadow:0 4px 20px rgba(0,0,0,0.08);
+  }
+  #tela-login h2{margin-top:0; font-size:1.3rem;}
+  #tela-login input{
+    width:100%; padding:12px 14px; border:1px solid #D8D6CC; border-radius:6px;
+    font-size:0.95rem; margin-bottom:12px;
+  }
+  #tela-login button{
+    width:100%; background:var(--amarelo); color:var(--preto); font-weight:800;
+    padding:13px; border-radius:6px; border:none; cursor:pointer; font-size:0.9rem;
+  }
+  #erro-login{color:#B33A3A; font-size:0.85rem; margin-bottom:10px; display:none;}
+
+  /* PAINEL */
+  #painel{display:none; max-width:1000px; margin:24px auto; padding:0 20px;}
+  .filtros-topo{display:flex; gap:10px; margin-bottom:16px; flex-wrap:wrap; align-items:center;}
+  .filtros-topo select, .filtros-topo input{
+    padding:9px 12px; border:1px solid #D8D6CC; border-radius:6px; font-size:0.85rem;
+  }
+  .filtros-topo button{
+    padding:9px 16px; border-radius:6px; border:1px solid var(--preto); background:var(--branco);
+    cursor:pointer; font-size:0.85rem;
+  }
+
+  .cartao-pedido{
+    background:var(--branco); border-radius:10px; padding:18px 20px; margin-bottom:14px;
+    box-shadow:0 1px 4px rgba(0,0,0,0.06);
+  }
+  .cartao-pedido-topo{display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:10px;}
+  .numero-pedido{font-weight:800; font-size:1.05rem;}
+  .data-pedido{color:var(--chumbo-claro); font-size:0.8rem;}
+  .itens-pedido{margin:10px 0; font-size:0.88rem; color:var(--chumbo);}
+  .info-linha{font-size:0.85rem; margin:3px 0; color:var(--chumbo);}
+  .info-linha strong{color:var(--preto);}
+  .subtotal-pedido{font-weight:800; font-size:1rem; margin-top:6px;}
+
+  .controle-status{
+    display:flex; gap:8px; align-items:center; margin-top:12px; flex-wrap:wrap;
+    border-top:1px solid #EEECE4; padding-top:12px;
+  }
+  .controle-status select, .controle-status input{
+    padding:8px 10px; border:1px solid #D8D6CC; border-radius:6px; font-size:0.85rem;
+  }
+  .controle-status button{
+    background:var(--preto); color:var(--branco); border:none; padding:8px 16px;
+    border-radius:6px; cursor:pointer; font-size:0.85rem; font-weight:700;
+  }
+  .controle-status button:hover{background:var(--chumbo);}
+  .status-badge{
+    display:inline-block; padding:4px 10px; border-radius:20px; font-size:0.72rem; font-weight:700;
+  }
+  .st-aguardando_pagamento{background:#EAEAEA; color:var(--chumbo-claro);}
+  .st-pago{background:#E3F1E4; color:var(--verde-ok);}
+  .st-pagamento_recusado{background:#FBEAEA; color:#B33A3A;}
+  .st-separacao{background:#EAEAEA; color:var(--chumbo-claro);}
+  .st-transporte{background:#FFF3CC; color:#8A6D00;}
+  .st-entregue{background:#E3F1E4; color:var(--verde-ok);}
+  .st-cancelado{background:#FBEAEA; color:#B33A3A;}
+
+  .toast{
+    position:fixed; bottom:20px; left:50%; transform:translateX(-50%);
+    background:var(--preto); color:var(--branco); padding:12px 20px; border-radius:8px;
+    font-size:0.85rem; opacity:0; pointer-events:none; transition:opacity .2s;
+  }
+  .toast.show{opacity:1;}
+  #carregando, #sem-pedidos{text-align:center; color:var(--chumbo-claro); padding:40px 0;}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>🛠️ Vidromáquinas — Admin de Pedidos</h1>
+  <button class="sair" id="btn-sair" style="display:none;" onclick="sair()">Sair</button>
+</header>
+
+<div id="tela-login">
+  <h2>Login de administrador</h2>
+  <p id="erro-login"></p>
+  <input type="email" id="login-email" placeholder="E-mail">
+  <input type="password" id="login-senha" placeholder="Senha">
+  <button onclick="fazerLogin()">Entrar</button>
+</div>
+
+<div id="painel">
+  <div class="filtros-topo">
+    <select id="filtro-status">
+      <option value="">Todos os status</option>
+      <option value="aguardando_pagamento">Aguardando pagamento</option>
+      <option value="pago">Pagamento confirmado</option>
+      <option value="pagamento_recusado">Pagamento recusado</option>
+      <option value="separacao">Em separação</option>
+      <option value="transporte">Em transporte</option>
+      <option value="entregue">Entregue</option>
+      <option value="cancelado">Cancelado</option>
+    </select>
+    <button onclick="carregarPedidos()">Filtrar</button>
+  </div>
+  <div id="carregando" style="display:none;">Carregando pedidos...</div>
+  <div id="sem-pedidos" style="display:none;">Nenhum pedido encontrado.</div>
+  <div id="lista-pedidos"></div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+const SUPABASE_URL = 'https://evgeznfgirkvpprwzjft.supabase.co';
+const SUPABASE_ANON_KEY = 'sb_publishable_UamAo4pc-SKez0K5Rhz0jw_yYPwsjrd';
+const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+const statusInfo = {
+  aguardando_pagamento: {texto:'Aguardando pagamento'},
+  pago: {texto:'Pagamento confirmado ✓'},
+  pagamento_recusado: {texto:'Pagamento recusado'},
+  separacao: {texto:'Em separação'},
+  transporte: {texto:'Em transporte'},
+  entregue: {texto:'Entregue'},
+  cancelado: {texto:'Cancelado'},
+};
+
+function mostrarToast(msg){
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2500);
+}
+
+async function fazerLogin(){
+  const email = document.getElementById('login-email').value.trim();
+  const senha = document.getElementById('login-senha').value;
+  const erroBox = document.getElementById('erro-login');
+  erroBox.style.display = 'none';
+
+  const {data, error} = await supabaseClient.auth.signInWithPassword({email, password: senha});
+  if(error){
+    erroBox.textContent = 'E-mail ou senha inválidos.';
+    erroBox.style.display = 'block';
+    return;
+  }
+
+  // Confirma se o usuário tem papel de admin
+  const {data: perfil, error: erroPerfil} = await supabaseClient
+    .from('profiles')
+    .select('role')
+    .eq('id', data.user.id)
+    .single();
+
+  if(erroPerfil || !perfil || perfil.role !== 'admin'){
+    erroBox.textContent = 'Essa conta não tem permissão de administrador.';
+    erroBox.style.display = 'block';
+    await supabaseClient.auth.signOut();
+    return;
+  }
+
+  document.getElementById('tela-login').style.display = 'none';
+  document.getElementById('painel').style.display = 'block';
+  document.getElementById('btn-sair').style.display = 'inline';
+  carregarPedidos();
+}
+
+async function sair(){
+  await supabaseClient.auth.signOut();
+  document.getElementById('painel').style.display = 'none';
+  document.getElementById('btn-sair').style.display = 'none';
+  document.getElementById('tela-login').style.display = 'block';
+}
+
+async function carregarPedidos(){
+  const carregando = document.getElementById('carregando');
+  const semPedidos = document.getElementById('sem-pedidos');
+  const lista = document.getElementById('lista-pedidos');
+  carregando.style.display = 'block';
+  semPedidos.style.display = 'none';
+  lista.innerHTML = '';
+
+  const filtroStatus = document.getElementById('filtro-status').value;
+  let query = supabaseClient.from('pedidos').select('*').order('criado_em', {ascending:false});
+  if(filtroStatus) query = query.eq('status', filtroStatus);
+
+  const {data: pedidos, error} = await query;
+  carregando.style.display = 'none';
+
+  if(error){
+    mostrarToast('Erro ao carregar pedidos: ' + error.message);
+    return;
+  }
+  if(!pedidos || pedidos.length === 0){
+    semPedidos.style.display = 'block';
+    return;
+  }
+
+  lista.innerHTML = pedidos.map(p => {
+    const numero = `VM-${String(p.numero_seq).padStart(4,'0')}`;
+    const dataFmt = new Date(p.criado_em).toLocaleString('pt-BR');
+    const itensTexto = (p.itens || []).map(i => `${i.qtd}x ${i.titulo} (${i.codigo || ''})`).join('<br>');
+    const st = statusInfo[p.status] || {texto: p.status};
+    return `
+    <div class="cartao-pedido">
+      <div class="cartao-pedido-topo">
+        <div>
+          <div class="numero-pedido">Pedido #${numero}</div>
+          <div class="data-pedido">${dataFmt}</div>
+        </div>
+        <span class="status-badge st-${p.status}">${st.texto}</span>
+      </div>
+      <div class="itens-pedido">${itensTexto}</div>
+      <div class="info-linha"><strong>Telefone:</strong> ${p.telefone || 'não informado'}</div>
+      <div class="info-linha"><strong>Forma de pagamento:</strong> ${p.forma_pagamento || '—'}</div>
+      <div class="subtotal-pedido">Subtotal: R$ ${Number(p.subtotal).toLocaleString('pt-BR', {minimumFractionDigits:2})}</div>
+
+      <div class="controle-status">
+        <select id="status-${p.id}">
+          ${Object.keys(statusInfo).map(k => `<option value="${k}" ${k === p.status ? 'selected' : ''}>${statusInfo[k].texto}</option>`).join('')}
+        </select>
+        <input type="text" id="rastreio-${p.id}" placeholder="Código de rastreio" value="${p.rastreio || ''}">
+        <button onclick="salvarPedido('${p.id}')">Salvar</button>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+async function salvarPedido(id){
+  const novoStatus = document.getElementById(`status-${id}`).value;
+  const rastreio = document.getElementById(`rastreio-${id}`).value.trim();
+
+  const {error} = await supabaseClient
+    .from('pedidos')
+    .update({status: novoStatus, rastreio: rastreio || null})
+    .eq('id', id);
+
+  if(error){
+    mostrarToast('Erro ao salvar: ' + error.message);
+    return;
+  }
+  mostrarToast('Pedido atualizado!');
+  carregarPedidos();
+}
+
+// Mantém sessão ao recarregar a página
+supabaseClient.auth.getUser().then(async ({data}) => {
+  if(data && data.user){
+    const {data: perfil} = await supabaseClient.from('profiles').select('role').eq('id', data.user.id).single();
+    if(perfil && perfil.role === 'admin'){
+      document.getElementById('tela-login').style.display = 'none';
+      document.getElementById('painel').style.display = 'block';
+      document.getElementById('btn-sair').style.display = 'inline';
+      carregarPedidos();
+    }
+  }
+});
+</script>
+</body>
+</html>
